@@ -1,0 +1,216 @@
+Introduction to CrewAI Flows (YouTube Teaching Notes)
+1. What are Flows in CrewAI?
+
+CrewAI Flows are a way to build structured workflows for AI applications.
+
+Instead of writing everything in one script, flows allow you to organize tasks into steps where each step runs in a specific order or based on events.
+
+Think of flows like:
+
+A pipeline
+
+A workflow automation
+A step-by-step process for AI tasks
+
+Example
+
+Imagine building a system that:
+Takes a user question
+Searches information
+Generates an answer
+
+Returns the result
+
+Instead of writing everything together, Flows break this into steps.
+
+2. Why Do We Need Flows?
+
+Flows help solve common problems when building AI systems.
+
+Without flows
+
+Everything in one script
+Hard to maintain
+Difficult to scale
+
+
+With Flows
+
+Clear structure
+Event-based execution
+Easy debugging
+Better for complex AI systems
+
+
+
+So flows help build production-ready AI workflows.
+
+In CrewAI, a flow is usually defined using a class.
+
+Inside this class, we define different steps of execution.
+
+Example structure:
+
+from crewai.flow.flow import Flow
+
+class MyFlow(Flow):
+    pass
+
+
+3. Key Concept: Flow Class
+
+In CrewAI, a flow is usually defined using a class.
+
+Inside this class, we define different steps of execution.
+
+Example structure:
+
+from crewai.flow.flow import Flow
+
+class MyFlow(Flow):
+    pass
+
+This class will contain multiple steps that run in a sequence.
+
+4. Understanding @start
+
+@start defines the starting point of the flow.
+
+This is the first function that runs when the flow starts.
+
+Example:
+
+from crewai.flow.flow import Flow, start
+
+class MyFlow(Flow):
+
+    @start()
+    def begin(self):
+        print("Flow started")
+Explanation
+
+When we run the flow:
+
+MyFlow().kickoff()
+
+The begin() function runs first.
+
+Important Points
+
+@start:
+
+Marks the entry point
+
+Executes only once
+
+Starts the workflow
+
+5. Understanding @listen
+
+@listen is used to trigger another step after a previous step finishes.
+
+It basically means:
+
+"Listen to this step and run when it finishes."
+
+Example:
+
+from crewai.flow.flow import Flow, start, listen
+
+class MyFlow(Flow):
+
+    @start()
+    def begin(self):
+        print("Flow started")
+        return "Hello"
+
+    @listen(begin)
+    def second_step(self, data):
+        print("Received:", data)
+Execution Flow
+
+Step 1:
+
+begin()
+
+Step 2:
+
+second_step()
+Data Passing
+
+The output of begin() becomes the input of second_step().
+
+This makes flows data-driven workflows.
+
+6. How Flow Execution Works
+
+Flow execution happens like this:
+
+Flow Start
+   ↓
+@start method
+   ↓
+@listen methods
+   ↓
+Next step
+   ↓
+Final output
+
+So every step waits for the previous step to finish
+
+7. Real-World Example
+
+Example: AI Blog Generator Flow
+
+Steps:
+
+User Topic
+   ↓
+Generate Outline
+   ↓
+Write Blog
+   ↓
+Review Blog
+   ↓
+Final Output
+
+Each of these steps can be separate functions in a flow
+
+8. Benefits of CrewAI Flows
+1️⃣ Structured AI pipelines
+
+Easy to understand workflow.
+
+2️⃣ Event-driven execution
+
+Steps run when previous tasks finish.
+
+3️⃣ Easy debugging
+
+Each step is separate.
+
+4️⃣ Scalable AI systems
+
+Used for complex agentic workflows.
+
+9. When Should We Use Flows?
+
+Use flows when:
+
+Building multi-step AI applications
+
+Creating automation pipelines
+
+Working with multiple agents
+
+Managing complex workflows
+
+Examples:
+
+AI research assistant
+
+AI content generator
+
+Customer support automation
+
+Data processing pipelines
