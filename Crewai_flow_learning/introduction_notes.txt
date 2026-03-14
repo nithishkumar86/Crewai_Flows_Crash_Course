@@ -1,4 +1,5 @@
-Introduction to CrewAI Flows (YouTube Teaching Notes)
+Introduction to CrewAI Flows
+
 1. What are Flows in CrewAI?
 
 CrewAI Flows are a way to build structured workflows for AI applications.
@@ -8,17 +9,16 @@ Instead of writing everything in one script, flows allow you to organize tasks i
 Think of flows like:
 
 A pipeline
-
 A workflow automation
 A step-by-step process for AI tasks
 
 Example
 
 Imagine building a system that:
+
 Takes a user question
 Searches information
 Generates an answer
-
 Returns the result
 
 Instead of writing everything together, Flows break this into steps.
@@ -31,7 +31,7 @@ Without flows
 
 Everything in one script
 Hard to maintain
-Difficult to scale
+Dfficult to scale
 
 
 With Flows
